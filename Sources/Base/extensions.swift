@@ -78,7 +78,7 @@ extension URLRequest {
 	/** A string describing the request, including headers and body. */
 	public var debugDescription: String {
 		var msg = "HTTP/1.1 \(httpMethod ?? "METHOD") \(url?.description ?? "/")"
-		allHTTPHeaderFields?.forEach() { msg += "\n\($0): \($1)" }
+		allHTTPHeaderFields?.forEach() { msg += "\n\($0.0): \($0.1)" }
 		if let data = httpBody, let body = String(data: data, encoding: String.Encoding.utf8) {
 			msg += "\n\n\(body)"
 		}
@@ -119,7 +119,7 @@ extension HTTPURLResponse {
 	/** Format HTTP status and response headers as is customary. */
 	override open var debugDescription: String {
 		var msg = "HTTP/1.1 \(statusCode) \(statusString)"
-		allHeaderFields.forEach() { msg += "\n\($0): \($1)" }
+		allHeaderFields.forEach() { msg += "\n\($0.0): \($0.1)" }
 		return msg
 	}
 }
